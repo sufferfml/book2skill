@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "book2skill"
+version = "0.0.4"
+description = "Evidence-grounded, resumable book framework skills for a host agent"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.11"
+dependencies = ["pypdf==6.10.0"]
+
+[project.urls]
+Repository = "https://github.com/sufferfml/book2skill"
+Issues = "https://github.com/sufferfml/book2skill/issues"
+
+[project.scripts]
+book2skill = "book2skill.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

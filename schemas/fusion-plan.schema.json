@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fusion-plan",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.0.1"
+    },
+    "builder_context": {
+      "type": "string",
+      "minLength": 1
+    },
+    "outcome": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "integrate",
+        "keep_separate",
+        "insufficient_evidence"
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dispositions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "framework_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "use",
+              "reference_only",
+              "exclude"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "framework_id",
+          "action",
+          "rationale"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "bridges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "left_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,62}$"
+            },
+            "minItems": 1
+          },
+          "right_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,62}$"
+            },
+            "minItems": 1
+          },
+          "relationship": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "equivalent",
+              "refines",
+              "complements",
+              "conditional_alternative",
+              "contradicts",
+              "unrelated"
+            ]
+          },
+          "resolution": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "combine",
+              "conditional",
+              "keep_separate",
+              "exclude",
+              "unresolved"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "differences": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "selection_rule": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,62}$"
+            },
+            "minItems": 2
+          }
+        },
+        "required": [
+          "id",
+          "left_ids",
+          "right_ids",
+          "relationship",
+          "resolution",
+          "rationale",
+          "conditions",
+          "differences",
+          "selection_rule",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "builder_context",
+    "outcome",
+    "rationale",
+    "dispositions",
+    "bridges"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fusion-config",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.0.1"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "host": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context_capacity": {
+      "type": "integer",
+      "minimum": 1024
+    },
+    "context_reserve": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_calls": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_cost_usd": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "purpose",
+    "language",
+    "model",
+    "host",
+    "prompt_version",
+    "context_capacity",
+    "context_reserve",
+    "max_calls",
+    "max_cost_usd"
+  ],
+  "additionalProperties": false
+}

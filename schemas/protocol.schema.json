@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "protocol",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.0.1"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "exploratory",
+        "formal"
+      ]
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "host": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "prompt_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repetitions": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "material_char_budget": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "min_improvement": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "max_boundary_errors": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_calls": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_cost_usd": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "review_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "split": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "dev",
+              "heldout"
+            ]
+          },
+          "family": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "surface_shift",
+              "condition_reversal",
+              "missing_information",
+              "new_evidence"
+            ]
+          },
+          "input": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_behaviors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "cross_chapter": {
+            "type": "boolean"
+          },
+          "distance": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cross_book": {
+            "type": "boolean"
+          },
+          "baseline_regression": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "split",
+          "family",
+          "input",
+          "expected_behaviors",
+          "evidence_refs",
+          "cross_chapter",
+          "distance"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "B0",
+              "B1",
+              "B2",
+              "B3",
+              "B4"
+            ]
+          },
+          "material_path": {
+            "type": "string",
+            "minLength": 0
+          },
+          "provenance": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "material_path",
+          "provenance"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 5
+    },
+    "comparison_kind": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "book",
+        "fusion",
+        "optimization"
+      ]
+    },
+    "max_quality_drop": {
+      "type": "number",
+      "minimum": 0
+    },
+    "min_read_reduction": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "delivery": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "inline",
+        "on_demand"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "purpose",
+    "mode",
+    "model",
+    "host",
+    "tools",
+    "prompt_version",
+    "repetitions",
+    "material_char_budget",
+    "min_improvement",
+    "max_boundary_errors",
+    "max_calls",
+    "max_cost_usd",
+    "review_policy",
+    "cases",
+    "conditions"
+  ],
+  "additionalProperties": false
+}

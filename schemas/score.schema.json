@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "score",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.0.1"
+    },
+    "review_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer_type": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "human",
+        "model"
+      ]
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "mapping": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "boundaries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "fidelity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "action": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        }
+      },
+      "required": [
+        "mapping",
+        "boundaries",
+        "fidelity",
+        "action",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "boundary_error": {
+      "type": "boolean"
+    },
+    "fabricated_attribution": {
+      "type": "boolean"
+    },
+    "concealed_gap": {
+      "type": "boolean"
+    },
+    "failure_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "enum": [
+          "extraction",
+          "reconstruction",
+          "boundary",
+          "mapping",
+          "execution",
+          "case_defect"
+        ]
+      },
+      "minItems": 0
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "human_checked": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "reviewer",
+    "reviewer_type",
+    "scores",
+    "boundary_error",
+    "fabricated_attribution",
+    "concealed_gap",
+    "failure_types",
+    "rationale",
+    "human_checked"
+  ],
+  "additionalProperties": false
+}

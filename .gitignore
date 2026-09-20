@@ -1,0 +1,32 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+runs/
+evaluation/private/
+.DS_Store
+
+# Local project planning documents
+/产品需求文档.md
+/技术架构设计文档.md
+/项目进展.md
+
+# Local book material, run artifacts, backups, and generated archives
+/workspaces/
+/artifacts/
+/dist/
+.env
+.env.*
+!.env.example
+
+# Private application packages and audit archives never belong in the public generator
+/skill/business-design/
+/business-design/
+/audit/
+*.epub
+*.pdf
+*.mobi
+*.azw
+/config.json
+/request.json
