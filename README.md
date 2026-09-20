@@ -4,7 +4,22 @@
 
 Reconstruct the reasoning scattered across a book into evidence-grounded frameworks, then compile a skill that applies those frameworks to new problems. For multiple books, extract and review each independently before deciding what to integrate, keep separate, or leave unresolved.
 
-**Experimental, version 0.0.4.** The workflow and local tools run; improved reasoning or transfer to new problems has not been established by a formal held-out evaluation. The host agent reads, reasons, and reviews. Python handles extraction, evidence, state, validation, packaging, and evaluation records; it does not call an LLM.
+## Comparison with book-to-skill
+
+[book-to-skill](https://github.com/virgiliojr94/book-to-skill) and book2skill both turn book or document knowledge into reusable agent skills, including frameworks, decision rules, and on-demand loading. Their respective emphases are organizing knowledge for study and reference, and reconstructing, reviewing, and integrating frameworks for a specific task.
+
+| Aspect | book-to-skill | book2skill |
+| --- | --- | --- |
+| Input and extraction | PDF, EPUB, DOCX, HTML, RTF, text, and other formats; folders, globs, and multiple files; content-dependent extractors including Docling | EPUB, text-layer PDF, and Markdown/TXT; spine/page locations, offsets, and extraction gaps; bundled PDF parser |
+| Organization | Chapter or topic files with mental models, glossary, patterns, and decision guides; study depth adds examples, mechanisms, and failure modes | Task-oriented claims, relations, and frameworks with premises, counterexamples, and boundaries; compiled into a shared core and decision modules |
+| Sources and review | Chapter references and cross-chapter connections locate material; generated prose emphasizes synthesis | Locations, hashes, and item-level evidence trace claims and relations; distinguishes author statements, reconstruction, and extensions, with separate review steps |
+| Multiple sources and updates | Unified skills from multiple sources; Update / Fold-in revises chapters, patterns, and indexes | Independent extraction and review per book, followed by comparison of premises, mechanisms, and limits; preserves conflicts, conditional alternatives, non-integration outcomes, and old-version baselines |
+| Runtime reading | Chapter/topic indexes guide on-demand file loading | Task routes load the shared core and required modules; explanations and source checks use separate ID queries; full research archives stay separate |
+| Workflow and maintenance | Conversion and installation, analyze-only, generation from analysis, and incremental update modes | Task submission, resumable checkpoints, version invalidation, review records, and controlled evaluation protocols; corresponding run and review materials must be maintained |
+
+For a study and reference entry point across books, technical documents, and varied file formats, book-to-skill is a useful starting point. For task-specific cross-chapter reasoning, traceable conclusions, and deciding when methods from different books can work together, consider book2skill. Both organizations can serve different uses of the same material. This compares implementation and intended use; it does not establish which produces better answers.
+
+Basis: book2skill 0.0.4 and book-to-skill commit [`526f362`](https://github.com/virgiliojr94/book-to-skill/commit/526f362552562d88c1a8bbf8012d2cee93f831d5), checked on 2026-09-21. See its [generation specification](https://github.com/virgiliojr94/book-to-skill/blob/526f362552562d88c1a8bbf8012d2cee93f831d5/SKILL.md), [usage modes](https://github.com/virgiliojr94/book-to-skill/blob/526f362552562d88c1a8bbf8012d2cee93f831d5/docs/usage.md), and [processing workflow](https://github.com/virgiliojr94/book-to-skill/blob/526f362552562d88c1a8bbf8012d2cee93f831d5/docs/how-it-works.md). Later versions may differ.
 
 ## Install the skill
 
